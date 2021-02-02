@@ -1,24 +1,24 @@
-  body {
+body {
     background-color: rgb(250, 250,250);
-  }
+}
   
-  .container {
+.container {
     display: flex;
     align-items: center;
     flex-direction: column;
-  }
-  
-  .image {
+}
+
+.image {
     width: 370px;
     margin-top: 50px;
-  }
+}
   
-  @media only screen and (max-width: 770px) {
+@media only screen and (max-width: 770px) {
     .container {
-      margin: 0 10%;
+        margin: 0 10%;
     }
-  
+
     .image {
-      width: 100%;
+        width: 100%;
     }
-  }
+}
