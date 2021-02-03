@@ -12,12 +12,12 @@ interface props {
 }
 
 const Chart: React.FC<props> = ({ data: { confirmed, recovered, deaths }, country }: props) => {
-    const [dailyData, setDailyData] = useState<dailyData[]>([]);
+    const [dailyApiData, setDailyApiData] = useState<dailyData[]>([]);
 
     const fetchData = async () => {
         const results = await getDailyData();
-        setDailyData(results)
-    }
+        setDailyApiData(results);
+    };
 
     const barChart = (
         confirmed ? (
@@ -40,19 +40,18 @@ const Chart: React.FC<props> = ({ data: { confirmed, recovered, deaths }, countr
         ) : null
     );
 
-
     const lineChart = (
-        dailyData.length > 0 ? (
+        dailyApiData.length > 0 ? (
             <Line
                 data={{
-                    labels: dailyData.map(({ reportDate }) => reportDate),
+                    labels: dailyApiData.map(({ reportDate }) => reportDate),
                     datasets: [{
-                        data: dailyData.map((data) => data.confirmed),
+                        data: dailyApiData.map((data) => data.confirmed),
                         label: 'Infected',
                         borderColor: '#3333ff',
                         fill: true,
                     }, {
-                        data: dailyData.map((data) => data.deaths),
+                        data: dailyApiData.map((data) => data.deaths),
                         label: 'Deaths',
                         borderColor: 'red',
                         backgroundColor: 'rgba(255, 0, 0, 0.5)',
@@ -64,14 +63,13 @@ const Chart: React.FC<props> = ({ data: { confirmed, recovered, deaths }, countr
         ) : null
     );
 
-    useEffect(() => { fetchData(); }, [])
+    useEffect(() => { fetchData(); }, []);
 
     return (
         <div className={styles.container}>
             {country ? barChart : lineChart}
         </div>
-    )
-}
-
+    );
+};
 
 export default Chart;
