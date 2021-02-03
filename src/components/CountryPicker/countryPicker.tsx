@@ -3,7 +3,6 @@ import { NativeSelect, FormControl } from '@material-ui/core';
 
 import styles from './CountryPicker.module.css';
 import { getCountries } from '../../api';
-import generateId from '../../utils/uuid';
 
 interface props {
     // eslint-disable-next-line no-unused-vars
@@ -24,15 +23,11 @@ const CountryPicker: React.FC<props> = ({ handleCountryChange }: props) => {
         <FormControl className={styles.formControl}>
             <NativeSelect defaultValue="" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleCountryChange(e.target.value)}>
                 <option value="">World Wide</option>
-                {
-                    countries.map(
-                        (country: string) => (
-                            <option key={generateId(8)} value={country}>
-                                {country}
-                            </option>
-                        ),
-                    )
-                }
+                {countries.map((country: string) => (
+                    <option value={country} key={country}>
+                        {country}
+                    </option>
+                ))}
             </NativeSelect>
         </FormControl>
     );
