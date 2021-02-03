@@ -11,7 +11,7 @@ interface props {
     country: string
 }
 
-const Chart: React.FC<props> = ({ data: { confirmed, recovered, deaths, lastUpdate }, country }: props) => {
+const Chart: React.FC<props> = ({ data: { confirmed, recovered, deaths }, country }: props) => {
     const [dailyData, setDailyData] = useState<dailyData[]>([]);
 
     const fetchData = async () => {
